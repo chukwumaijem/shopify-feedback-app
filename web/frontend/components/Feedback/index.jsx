@@ -1,10 +1,19 @@
 import { Fragment } from 'react';
 import { Card, TextContainer, EmptyState } from '@shopify/polaris';
+
 import { useAppQuery } from '../../hooks';
+import { FeedbackList } from './FeedbackList';
 
-const feedback = [];
+const feedback = [
+  {
+    id: 1,
+    name: 'John Doe',
+    date: new Date(Date.now() + 60 * 100).toDateString(),
+    feedback: 'Enable product request',
+  },
+];
 
-export function FeedbackList() {
+export function Feedback() {
   const { data, isLoading } = useAppQuery({
     url: '/api/products/count',
   });
@@ -30,6 +39,8 @@ export function FeedbackList() {
           </EmptyState>
         </Card>
       )}
+
+      {feedback.length && <FeedbackList feedback={feedback} />}
     </Fragment>
   );
 }

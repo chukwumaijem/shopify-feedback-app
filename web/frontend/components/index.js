@@ -1,2 +1,2 @@
-export { FeedbackList } from './FeedbackList';
+export { Feedback } from './Feedback';
 export * from './providers';
