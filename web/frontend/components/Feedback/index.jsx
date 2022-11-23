@@ -4,23 +4,17 @@ import { Card, TextContainer, EmptyState } from '@shopify/polaris';
 import { useAppQuery } from '../../hooks';
 import { FeedbackList } from './FeedbackList';
 
-const feedback = [
-  {
-    id: 1,
-    name: 'John Doe',
-    date: new Date(Date.now() + 60 * 100).toDateString(),
-    feedback: 'Enable product request',
-  },
-];
-
 export function Feedback() {
-  const { data, isLoading } = useAppQuery({
-    url: '/api/products/count',
+  const { data = [], isLoading } = useAppQuery({
+    url: '/api/feedback',
   });
+
+  const showEmpty = !isLoading && !data?.length;
+  const showList = !!data?.length;
 
   return (
     <Fragment>
-      {!isLoading && !feedback.length && (
+      {showEmpty && (
         <Card sectioned>
           <EmptyState
             heading="No feedback submiited yet."
@@ -40,7 +34,7 @@ export function Feedback() {
         </Card>
       )}
 
-      {feedback.length && <FeedbackList feedback={feedback} />}
+      {showList && <FeedbackList feedback={data} />}
     </Fragment>
   );
 }
