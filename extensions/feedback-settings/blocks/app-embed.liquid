@@ -1,18 +1,36 @@
 <div is="popup-container">
-  <img is="popup-icon" src="{{ 'bubble-yellow.svg' | asset_url }}" loading="lazy" width="80" height="80">
+  {%- assign img_color = block.settings.popup_color -%}
+  <img
+    is="popup-icon"
+    src="{{ 'bubble-' | append: img_color | append: '.svg'  | asset_url }}"
+    loading="lazy"
+    width="80"
+    height="80"
+  >
 </div>
 
 {% schema %}
-  {
-    "name": "Feedback Bubble",
-    "target": "body",
-    "stylesheet": "popup.css",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "chat_popup",
-        "label": "Popup Icon"
-      }
-    ]
-  }
+{
+  "name": "Feedback Bubble",
+  "target": "body",
+  "stylesheet": "popup.css",
+  "settings": [
+    {
+      "type": "select",
+      "id": "popup_color",
+      "label": "Popup Color",
+      "options": [
+        {
+          "value": "yellow",
+          "label": "Yellow"
+        },
+        {
+          "value": "blue",
+          "label": "Blue"
+        }
+      ],
+      "default": "blue"
+    }
+  ]
+}
 {% endschema %}
