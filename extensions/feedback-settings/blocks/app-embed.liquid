@@ -1,0 +1,18 @@
+<div is="popup-container">
+  <img is="popup-icon" src="{{ 'bubble-yellow.svg' | asset_url }}" loading="lazy" width="80" height="80">
+</div>
+
+{% schema %}
+  {
+    "name": "Feedback Bubble",
+    "target": "body",
+    "stylesheet": "popup.css",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "chat_popup",
+        "label": "Popup Icon"
+      }
+    ]
+  }
+{% endschema %}
