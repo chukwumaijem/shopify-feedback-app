@@ -1,0 +1,10 @@
+<div is="popup-container">
+  {%- assign img_color = block.settings.popup_color -%}
+  <img
+    is="popup-icon"
+    src="{{ 'bubble-' | append: img_color | append: '.svg'  | asset_url }}"
+    loading="lazy"
+    width="80"
+    height="80"
+  >
+</div>

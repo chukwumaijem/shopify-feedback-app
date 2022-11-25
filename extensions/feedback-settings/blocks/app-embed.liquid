@@ -1,12 +1,6 @@
 <div is="popup-container">
-  {%- assign img_color = block.settings.popup_color -%}
-  <img
-    is="popup-icon"
-    src="{{ 'bubble-' | append: img_color | append: '.svg'  | asset_url }}"
-    loading="lazy"
-    width="80"
-    height="80"
-  >
+  {% render 'chat-window' %}
+  {% render 'chat-icon' %}
 </div>
 
 {% schema %}
@@ -14,6 +8,7 @@
   "name": "Feedback Bubble",
   "target": "body",
   "stylesheet": "popup.css",
+  "javascript": "popup.js",
   "settings": [
     {
       "type": "select",
