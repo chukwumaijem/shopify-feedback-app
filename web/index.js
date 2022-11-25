@@ -11,6 +11,7 @@ import { setupGDPRWebHooks } from './gdpr.js';
 import redirectToAuth from './helpers/redirect-to-auth.js';
 import { AppInstallations } from './app_installations.js';
 import applyFeedbackEndpoints from './backend/controllers/feedback.js';
+import applyPublicFeedbackEndpoints from './backend/controllers/public/feedback.js';
 import { Database } from './backend/database/database.js';
 
 const USE_ONLINE_TOKENS = false;
@@ -101,6 +102,11 @@ export async function createServer(
     }
   });
 
+  // All endpoints after this point will have access to a request.body
+  // attribute, as a result of the express.json() middleware
+  app.use(express.json());
+  applyPublicFeedbackEndpoints(app);
+
   // All endpoints after this point will require an active session
   app.use(
     '/api/*',
@@ -108,10 +114,6 @@ export async function createServer(
       billing: billingSettings,
     })
   );
-
-  // All endpoints after this point will have access to a request.body
-  // attribute, as a result of the express.json() middleware
-  app.use(express.json());
   applyFeedbackEndpoints(app);
 
   app.use((req, res, next) => {

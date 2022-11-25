@@ -31,15 +31,25 @@ class PopUp extends HTMLImageElement {
     this.classList.toggle(className);
   }
 
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
     const form = document.querySelector('form[is="chat-window"]');
     const customer = form.elements['name']?.value;
     const feedback = form.elements['feedback']?.value;
+    const shopId = form.elements['shopId'].value;
+    const shopDomain = form.elements['shopDomain'].value;
+    const apiURL = 'https://b9b5-197-210-85-109.eu.ngrok.io/api/feedback';
 
-    console.log('==submitted==', form);
-    console.log('==customer==', customer);
-    console.log('==feedback==', feedback);
+    const resp = await fetch(apiURL, {
+      method: 'POST',
+      body: JSON.stringify({ customer, feedback, shopId, shopDomain }),
+    });
+    const data = await resp.json();
+    this.showResponseToast(data);
+  }
+
+  showResponseToast(data) {
+    console.log('==data==', data);
   }
 }
 
