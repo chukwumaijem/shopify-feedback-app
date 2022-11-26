@@ -1,4 +1,5 @@
-import { Shopify } from '@shopify/shopify-api';
+import { getShopUrlFromSession } from '../../helpers/getShopUrl.js';
+import { Database } from '../database/database.js';
 
 const dummyResponse = [
   {
@@ -20,13 +21,9 @@ const dummyResponse = [
 export default function applyFeedbackEndpoints(app) {
   app.get('/api/feedback', async (req, res) => {
     try {
-      const session = await Shopify.Utils.loadCurrentSession(
-        req,
-        res,
-        app.get('use-online-tokens')
-      );
-      console.log('==session==', session);
-      res.status(200).send(dummyResponse);
+      const shopDomain = await getShopUrlFromSession(req, res);
+      const resp = await Database.list(shopDomain);
+      res.status(200).json(resp);
     } catch (error) {
       console.error(error);
       res.status(500).send(error.message);

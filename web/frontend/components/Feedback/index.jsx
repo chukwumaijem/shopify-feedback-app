@@ -11,7 +11,6 @@ export function Feedback() {
 
   const showEmpty = !isLoading && !data?.length;
   const showList = !!data?.length;
-
   return (
     <Fragment>
       {showEmpty && (

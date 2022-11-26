@@ -1,0 +1,21 @@
+<form is="chat-window">
+  <div class="field padding-bottom--24">
+    <label for="name">Name</label>
+    {% if customer.name %}
+      <input type="text" name="name" value="{{ customer.name }}" disabled>
+    {% else %}
+      <input type="text" name="name">
+    {% endif %}
+  </div>
+
+  <div class="field padding-bottom--24">
+    <label for="feedback">Feedback</label>
+    <textarea name="feedback" rows="4" cols="50" maxlength="200"></textarea>
+  </div>
+  <input type="text" name="shopId" value="{{shop.id}}" style="display:none">
+  <input type="text" name="shopDomain" value="{{shop.domain}}" style="display:none">
+
+  <div class="field padding-bottom--24">
+    <button type="submit" name="submit">Submit</button>
+  </div>
+</form>

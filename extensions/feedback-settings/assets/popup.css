@@ -1,0 +1,66 @@
+div[is='popup-button'] {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+}
+
+img[is='popup-icon'] {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+img[is='popup-icon']:hover {
+  transform: scale(1.1);
+}
+img[is='popup-icon'].active {
+  transform: scale(0.7);
+}
+
+form[is='chat-window'] {
+  display: none;
+  position: fixed;
+  bottom: calc(15px + calc(80px * 0.8));
+  right: 15px;
+  cursor: pointer;
+  z-index: 100;
+  padding: 10px;
+}
+form[is='chat-window'].show {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+.padding-top--24 {
+  padding-top: 24px;
+}
+form .field {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+form input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+}
+
+form button[type='submit'] {
+  background-color: rgb(84, 105, 212);
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, rgb(84, 105, 212) 0px 0px 0px 1px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px;
+}

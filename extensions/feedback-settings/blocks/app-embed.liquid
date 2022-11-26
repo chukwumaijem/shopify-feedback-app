@@ -1,0 +1,31 @@
+<div is="popup-container">
+  {% render 'chat-window' %}
+  {% render 'chat-icon' %}
+</div>
+
+{% schema %}
+{
+  "name": "Feedback Bubble",
+  "target": "body",
+  "stylesheet": "popup.css",
+  "javascript": "popup.js",
+  "settings": [
+    {
+      "type": "select",
+      "id": "popup_color",
+      "label": "Popup Color",
+      "options": [
+        {
+          "value": "yellow",
+          "label": "Yellow"
+        },
+        {
+          "value": "blue",
+          "label": "Blue"
+        }
+      ],
+      "default": "blue"
+    }
+  ]
+}
+{% endschema %}
