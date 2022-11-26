@@ -38,14 +38,22 @@ class PopUp extends HTMLImageElement {
     const feedback = form.elements['feedback']?.value;
     const shopId = form.elements['shopId'].value;
     const shopDomain = form.elements['shopDomain'].value;
-    const apiURL = 'https://b9b5-197-210-85-109.eu.ngrok.io/api/feedback';
+    const apiURL = 'https://aff8-197-210-226-87.eu.ngrok.io/api/feedback';
 
     const resp = await fetch(apiURL, {
       method: 'POST',
       body: JSON.stringify({ customer, feedback, shopId, shopDomain }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     const data = await resp.json();
     this.showResponseToast(data);
+    this.resetValues();
+  }
+
+  resetValues() {
+    // reset valus
   }
 
   showResponseToast(data) {

@@ -26,9 +26,9 @@ export function FeedbackList({ feedback }) {
           {feedback.map((item, index) => (
             <IndexTable.Row id={item.id} key={item.id} position={index}>
               <IndexTable.Cell>
-                <p>{item.name}</p>
+                <p>{item.customer}</p>
               </IndexTable.Cell>
-              <IndexTable.Cell>{item.date}</IndexTable.Cell>
+              <IndexTable.Cell>{item.createdAt}</IndexTable.Cell>
               <IndexTable.Cell>
                 <TextStyle>{truncate(item?.feedback, 25)}</TextStyle>
               </IndexTable.Cell>
